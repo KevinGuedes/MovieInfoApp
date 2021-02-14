@@ -1,27 +1,8 @@
 const axios = require('axios')
 const querystring = require('querystring')
 const { StatusCodes } = require('http-status-codes')
+const paths = require('../utils/paths')
 require('dotenv').config({ path: './.env' })
-
-const getImageConfiguration = async () => {
-
-    try {
-
-        const movieImageQueryString = querystring.stringify({
-            api_key: process.env.TMDB_API_KEY
-        })
-
-        const movieImage = await axios.get(`${process.env.TMDB_URL}/configuration?${movieImageQueryString}`)
-
-        if (movieImage.status == StatusCodes.OK)
-            return `${movieImage.data.images.base_url}${movieImage.data.images.poster_sizes[4]}`
-
-    }
-    catch (err) {
-        console.log(err)
-        res.status(500).send("Internal Server Error. Please, try again later")
-    }
-}
 
 
 const getMovieByName = async (req, res) => {
@@ -32,14 +13,14 @@ const getMovieByName = async (req, res) => {
             api_key: process.env.TMDB_API_KEY,
             query: req.body.movie,
             include_adult: false,
-            language: 'en-US'
+            language: 'pt-BR'
         })
 
-        const movieInfo = await axios.get(`${process.env.TMDB_URL}/search/movie?${movieInfoQueryString}`)
+        const movieInfo = await axios.get(`${paths.tmdbUrl}/search/movie?${movieInfoQueryString}`)
 
         if (movieInfo.status == StatusCodes.OK) {
             res.status(200).send({
-                poster: `${await getImageConfiguration()}${movieInfo.data.results[0].poster_path}`,
+                poster: `${paths.imageUrl}${movieInfo.data.results[0].poster_path}`,
                 overview: movieInfo.data.results[0].overview
             })
         }
