@@ -5,7 +5,11 @@ const paths = require('../utils/paths')
 require('dotenv').config({ path: './.env' })
 
 
-const getMovieByName = async (req, res) => {
+const buildImageUrl = (posterPath) => {
+    return `${paths.imageUrl}${posterPath}`
+}
+
+const getMoviesByName = async (req, res) => {
 
     try {
 
@@ -13,16 +17,13 @@ const getMovieByName = async (req, res) => {
             api_key: process.env.TMDB_API_KEY,
             query: req.body.movie,
             include_adult: false,
-            language: 'pt-BR'
+            language: 'en-US'
         })
 
         const movieInfo = await axios.get(`${paths.tmdbUrl}/search/movie?${movieInfoQueryString}`)
 
         if (movieInfo.status == StatusCodes.OK) {
-            res.status(200).send({
-                poster: `${paths.imageUrl}${movieInfo.data.results[0].poster_path}`,
-                overview: movieInfo.data.results[0].overview
-            })
+            res.status(200).render('movies', moviesMapper(movieInfo))
         }
 
     }
@@ -35,5 +36,5 @@ const getMovieByName = async (req, res) => {
 }
 
 module.exports = {
-    getMovieByName
+    getMoviesByName
 }
