@@ -1,5 +1,5 @@
 <%- contentFor('bodyContent') %>
-    <% movies.forEach(movie=> { %>
+    <% movies.map(movie=> { %>
         <menu>
             <img src="<%= movie.poster %>" alt="<%= movie.title %> Poster">
             <h1>

@@ -11,12 +11,12 @@ router.get('/', (req, res) => {
 })
 
 router.post('/getMoviesByname', async (req, res) => {
-    const movieName = req.body.movie
-    const movies = moviesMapper(await getMoviesByName(movieName))
-    console.log(typeof movies)
-    console.log(movies)
-
-    res.status(200).render('movies', { movies })
+    const movies = moviesMapper(await getMoviesByName(req.body.movie))
+    res.status(200).render('movies', {
+        movies: movies,
+        title: req.body.movie,
+        css: 'movies.css'
+    })
 })
 
 
