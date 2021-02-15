@@ -2,37 +2,35 @@ const axios = require('axios')
 const querystring = require('querystring')
 const { StatusCodes } = require('http-status-codes')
 const paths = require('../utils/paths')
+const { ExternalApiError } = require('../error/errors')
 require('dotenv').config({ path: './.env' })
 
 
-const buildImageUrl = (posterPath) => {
-    return `${paths.imageUrl}${posterPath}`
-}
+const getMoviesByName = async (movie) => {
 
-const getMoviesByName = async (req, res) => {
+    const movieInfoQueryString = querystring.stringify({
+        api_key: process.env.TMDB_API_KEY,
+        query: movie,
+        include_adult: false,
+        language: 'en-US'
+    })
 
-    try {
-
-        const movieInfoQueryString = querystring.stringify({
-            api_key: process.env.TMDB_API_KEY,
-            query: req.body.movie,
-            include_adult: false,
-            language: 'en-US'
-        })
-
-        const movieInfo = await axios.get(`${paths.tmdbUrl}/search/movie?${movieInfoQueryString}`)
-
-        if (movieInfo.status == StatusCodes.OK) {
-            res.status(200).render('movies', moviesMapper(movieInfo))
-        }
-
-    }
-    catch (err) {
-
-        console.log(err)
-        res.status(500).send("Internal Server Error. Please, try again later")
-
-    }
+    return await axios
+        .get(`${paths.tmdbUrl}/search/movie?${movieInfoQueryString}`)
+        .then(
+            response => {
+                if (response.status == StatusCodes.OK) {
+                    console.log('Movies READY')
+                    return response.data.results
+                }
+                else {
+                    throw new ExternalApiError('Failed to retrieve data from The Movies Database (TMDB) API')
+                }
+            },
+            error => {
+                console.log(error.message)
+                throw new ExternalApiError('Failed to retrieve data from The Movies Database (TMDB) API')
+            })
 }
 
 module.exports = {

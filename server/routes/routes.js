@@ -1,7 +1,7 @@
 const express = require('express')
+const { moviesMapper } = require('../mappings/moviesMapper')
 const { getMoviesByName } = require('../controller/methods')
 const router = express.Router()
-
 
 router.get('/', (req, res) => {
     res.status(200).render('index', {
@@ -10,9 +10,13 @@ router.get('/', (req, res) => {
     })
 })
 
+router.post('/getMoviesByname', async (req, res) => {
+    const movieName = req.body.movie
+    const movies = moviesMapper(await getMoviesByName(movieName))
+    console.log(typeof movies)
+    console.log(movies)
 
-router.get('/getMoviesByname', (req, res) => {
-    getMoviesByName(req, res)
+    res.status(200).render('movies', { movies })
 })
 
 

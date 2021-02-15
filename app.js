@@ -9,7 +9,6 @@ const port = process.env.PORT || 5001
 
 server
     .use(express.static('public'))
-    .use(bodyParser.json())
     .use(bodyParser.urlencoded({ extended: true }))
     .use(expressEjsLayout)
     .use(router)

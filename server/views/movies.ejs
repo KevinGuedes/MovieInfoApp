@@ -1,0 +1,13 @@
+<%- contentFor('bodyContent') %>
+    <% movies.forEach(movie=> { %>
+        <menu>
+            <img src="<%= movie.poster %>" alt="<%= movie.title %> Poster">
+            <h1>
+                <%= movie.title %>
+            </h1>
+            <p>
+                <%= movie.overview %>
+            </p>
+            <hr>
+        </menu>
+        <% }) %>
