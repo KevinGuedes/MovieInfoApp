@@ -2,10 +2,26 @@
     display: flex;
     flex-direction: row;
     margin: 2rem;
+    width: 90%;
+}
+
+.movie-info {
+    width: 80%;
+    margin: 2rem;
+}
+
+.movie-info h1 {
+    margin-bottom: 2rem;
+}
+
+.overview {
+    text-align: justify;
 }
 
 img {
+    width: 15%;
     margin: 2rem;
+    height: 20%;
 }
 
 h1 {

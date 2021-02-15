@@ -1,6 +1,6 @@
 <%- contentFor('bodyContent') %>
 <h1>Looking for a Movie?</h1>
-<form class="movie-name" action="/getMoviesByName" method="POST">
+<form class="movie-name" action="/getMoviesByName" method="GET">
     <input type="text" class="input-movie-name" name="movie" onfocus="this.placeholder = ''"
         onblur="this.placeholder = 'Movie name'" placeholder="Movie name">
     <button class="search-btn" type="submit">Search Movie</button>

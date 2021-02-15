@@ -5,14 +5,13 @@ const paths = require('../utils/paths')
 const { ExternalApiError } = require('../error/errors')
 require('dotenv').config({ path: './.env' })
 
-
 const getMoviesByName = async (movie) => {
 
     const movieInfoQueryString = querystring.stringify({
         api_key: process.env.TMDB_API_KEY,
         query: movie,
         include_adult: false,
-        language: 'en-US'
+        language: 'en-US',
     })
 
     return await axios
@@ -30,7 +29,9 @@ const getMoviesByName = async (movie) => {
             error => {
                 console.log(error.message)
                 throw new ExternalApiError('Failed to retrieve data from The Movies Database (TMDB) API')
-            })
+            }
+        )
+
 }
 
 module.exports = {

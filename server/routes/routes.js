@@ -12,11 +12,11 @@ router.get('/', (req, res) => {
 
 })
 
-router.post('/getMoviesByname', async (req, res) => {
+router.get('/getMoviesByname', async (req, res) => {
 
     try {
 
-        const movies = moviesMapper(await getMoviesByName(req.body.movie))
+        const movies = moviesMapper(await getMoviesByName(req.query.movie))
 
         res.status(200).render('movies', {
             movies: movies,
@@ -24,7 +24,8 @@ router.post('/getMoviesByname', async (req, res) => {
             css: 'movies.css'
         })
 
-    } catch (error) {
+    }
+    catch (error) {
 
         console.log(error.message)
 
@@ -35,6 +36,7 @@ router.post('/getMoviesByname', async (req, res) => {
         })
 
     }
+
 })
 
 router.get('/error', (req, res) => {
