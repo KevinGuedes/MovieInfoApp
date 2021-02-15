@@ -1,0 +1,13 @@
+.movie-container {
+    display: flex;
+    flex-direction: row;
+    margin: 2rem;
+}
+
+img {
+    margin: 2rem;
+}
+
+h1 {
+    font-size: 4rem
+}

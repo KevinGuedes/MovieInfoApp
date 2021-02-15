@@ -1,13 +1,23 @@
 <%- contentFor('bodyContent') %>
+<% if (movies.length> 0) { %>
     <% movies.map(movie=> { %>
-        <menu>
+        <div class="movie-container">
             <img src="<%= movie.poster %>" alt="<%= movie.title %> Poster">
-            <h1>
-                <%= movie.title %>
-            </h1>
-            <p>
-                <%= movie.overview %>
-            </p>
-            <hr>
-        </menu>
-        <% }) %>
+            <div class="movie-info">
+                <h1>
+                    <%= movie.title %>
+                </h1>
+                <p>
+                    <%= movie.overview %>
+                </p>
+            </div>
+        </div>
+    <% }) %>
+    <footer>
+        <a class="madeby" href="https://www.themoviedb.org//" target="_blank">Data Source: The Movies
+            Database
+        </a>
+    </footer>
+<% } else { %>
+    <h1>No movies were found. Please verify the name or try another one.</h1>
+<% } %>
