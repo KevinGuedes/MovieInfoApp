@@ -27,17 +27,23 @@
     <% }) %>
 
     <div class="pages">
-        <form action="/getMoviesByName" method="GET">
-            <input type="hidden" name="movie" value="<%= movie %>">
-            <button class="page-btn" type="submit" name="page" value="<%= nextPage %>">Next</button>
-        </form>
-
-        <% if (previousPage) { %>
-            <form action="/getMoviesByName" method="GET">
-                <input type="hidden" name="movie" value="<%= movie %>">
-                <button class="page-btn" type="submit" name="page" value="<%= previousPage %>">Previous</button>
-            </form>
-        <% } %>
+        <div>
+            <% if (nextPage <=totalPages) { %>
+                <form action="/getMoviesByName" method="GET">
+                    <input type="hidden" name="movie" value="<%= movie %>">
+                    <button class="page-btn" type="submit" name="page" value="<%= nextPage %>">Next</button>
+                </form>
+            <% } %>
+        </div>
+        
+        <div>
+            <% if (previousPage> 0) { %>
+                <form action="/getMoviesByName" method="GET">
+                    <input type="hidden" name="movie" value="<%= movie %>">
+                    <button class="page-btn" type="submit" name="page" value="<%= previousPage %>">Previous</button>
+                </form>
+            <% } %>
+        </div>
     </div>
 
 <% } else { %>

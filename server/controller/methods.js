@@ -23,7 +23,10 @@ const getMoviesByName = async (movie, page) => {
                 if (response.status == StatusCodes.OK) {
 
                     console.log('Movies READY')
-                    return response.data.results
+                    return {
+                        results: response.data.results,
+                        totalPages: response.data.total_pages
+                    }
 
                 }
                 else {

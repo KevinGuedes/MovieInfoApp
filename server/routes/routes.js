@@ -36,7 +36,9 @@ router.get('/movies/:movie/:page', async (req, res) => {
     try {
         const movieName = req.params.movie
         const actualPage = parseInt(req.params.page)
-        const movies = moviesInfoMapper(await getMoviesByName(movieName, actualPage))
+
+        const response = await getMoviesByName(movieName, actualPage)
+        const movies = moviesInfoMapper(response.results)
 
         res.status(200).render('movies', {
             movies: movies,
@@ -45,6 +47,7 @@ router.get('/movies/:movie/:page', async (req, res) => {
             movie: movieName,
             nextPage: actualPage + 1,
             previousPage: actualPage - 1,
+            totalPages: response.totalPages,
         })
 
     }
