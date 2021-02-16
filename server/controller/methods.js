@@ -43,6 +43,41 @@ const getMoviesByName = async (movie, page) => {
 
 }
 
+const getMovieDetailsById = async (id) => {
+
+    const movieDetailsQueryString = querystring.stringify({
+        api_key: process.env.TMDB_API_KEY,
+    })
+
+    return await axios
+        .get(`${paths.tmdbUrl}/movie/${id}?${movieDetailsQueryString}`)
+        .then(
+            response => {
+
+                if (response.status == StatusCodes.OK) {
+
+                    console.log('Details READY')
+                    return response.data
+
+                }
+                else {
+
+                    throw new ExternalApiError('Failed to retrieve data from The Movies Database (TMDB) API')
+
+                }
+            },
+            error => {
+
+                console.log(error.message)
+
+                throw new ExternalApiError('Failed to retrieve data from The Movies Database (TMDB) API')
+
+            }
+        )
+
+}
+
 module.exports = {
-    getMoviesByName
+    getMoviesByName,
+    getMovieDetailsById,
 }
