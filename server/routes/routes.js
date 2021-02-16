@@ -27,7 +27,7 @@ router.get('/:movie/:page', async (req, res) => {
     try {
         const movieName = req.params.movie
         const actualPage = req.params.page
-        const movies = moviesMapper(await getMoviesByName(movieName, actualPage))
+        const movies = moviesInfoMapper(await getMoviesByName(movieName, actualPage))
 
         res.status(200).render('movies', {
             movies: movies,
