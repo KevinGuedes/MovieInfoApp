@@ -42,7 +42,7 @@ h1 {
 }
 
 .page-btn, 
-.details-btn {
+.additional-info-btn {
     background-color: var(--color-blue-0);
     color: var(--color-gray-1);
     text-align: center;
@@ -57,13 +57,13 @@ h1 {
 }
 
 .page-btn:hover,
-.details-btn:hover {
+.additional-info-btn:hover {
     background-color: var(--color-blue-1);
     
 }
 
 .page-btn:focus,
-.details-btn:hover { 
+.additional-info-btn:hover { 
     outline: none; 
 }
 

@@ -15,7 +15,11 @@
 
                 <div class="additional-info">
                     <form action="/getMovieDetailsById" method="GET">
-                        <button class="details-btn" type="submit" name="id" value="<%= movie.id %>">Details</button>
+                        <button class="additional-info-btn" type="submit" name="id" value="<%= movie.id %>">Details</button>
+                    </form>
+
+                    <form action="/getMovieReviewsById" method="GET">
+                        <button class="additional-info-btn" type="submit" name="id" value="<%= movie.id %>">Reviews</button>
                     </form>
                 </div>
             </div>
