@@ -1,4 +1,6 @@
 .movie-container {
+    border: 1px solid var(--color-gray-1);
+    border-radius: 2rem;
     display: flex;
     flex-direction: row;
     margin: 2rem;
@@ -8,6 +10,9 @@
 .movie-info {
     width: 80%;
     margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .movie-info h1 {
@@ -26,4 +31,45 @@ img {
 
 h1 {
     font-size: 4rem
+}
+
+.pages {
+    width: 90%;
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.page-btn, 
+.details-btn {
+    background-color: var(--color-blue-0);
+    color: var(--color-gray-1);
+    text-align: center;
+    padding: 0.5rem 2rem;
+    text-decoration: none;
+    font-size: 2rem;
+    font-family: 'Times New Roman';
+    border-radius: 2rem;
+    border: 1px solid var(--color-gray-1);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.page-btn:hover,
+.details-btn:hover {
+    background-color: var(--color-blue-1);
+    
+}
+
+.page-btn:focus,
+.details-btn:hover { 
+    outline: none; 
+}
+
+.additional-info {
+    margin: 2rem;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
 }
