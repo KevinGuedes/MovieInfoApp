@@ -4,15 +4,38 @@
         <div class="movie-container">
             <img src="<%= movie.poster %>" alt="<%= movie.title %> Poster">
             <div class="movie-info">
-                <h1>
-                    <%= movie.title %>
-                </h1>
-                <p class="overview">
-                    <%= movie.overview %>
-                </p>
+                <div>
+                    <h1>
+                        <%= movie.title %>
+                    </h1>
+                    <p class="overview">
+                        <%= movie.overview %>
+                    </p>
+                </div>
+
+                <div class="additional-info">
+                    <form action="/getMovieDetailsById" method="GET">
+                        <button class="details-btn" type="submit" name="id" value="<%= movie.id %>">Details</button>
+                    </form>
+                </div>
             </div>
         </div>
     <% }) %>
+
+    <div class="pages">
+        <form action="/getMoviesByName" method="GET">
+            <input type="hidden" name="movie" value="<%= movie %>">
+            <button class="page-btn" type="submit" name="page" value="<%= nextPage %>">Next</button>
+        </form>
+
+        <% if (previousPage) { %>
+            <form action="/getMoviesByName" method="GET">
+                <input type="hidden" name="movie" value="<%= movie %>">
+                <button class="page-btn" type="submit" name="page" value="<%= previousPage %>">Previous</button>
+            </form>
+        <% } %>
+    </div>
+
 <% } else { %>
     <h1>No movies were found. Please verify the name or try another one.</h1>
 <% } %>
