@@ -20,18 +20,18 @@ router.get('/getMoviesByName', (req, res) => {
 
     let page = req.query.page || 1
 
-    res.redirect(`/${req.query.movie}/${page}`)
+    res.redirect(`/movies/${req.query.movie}/${page}`)
 
 })
 
 
 router.get('/getMovieDetailsById', (req, res) => {
 
-    res.redirect(`details/${req.query.id}`)
+    res.redirect(`/details/${req.query.id}`)
 
 })
 
-router.get('/:movie/:page', async (req, res) => {
+router.get('/movies/:movie/:page', async (req, res) => {
 
     try {
         const movieName = req.params.movie
