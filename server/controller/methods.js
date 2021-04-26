@@ -10,7 +10,7 @@ const getMoviesByName = async (movie, page) => {
     const movieInfoQueryString = querystring.stringify({
         api_key: process.env.TMDB_API_KEY,
         query: movie,
-        include_adult: true,
+        include_adult: false,
         language: 'en-US',
         page: page,
     })
